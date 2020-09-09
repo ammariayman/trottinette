@@ -1,19 +1,23 @@
 package com.is.trottinette.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Trottinette read-only à partir de la liste de trottinettes
- */
-@JsonIgnoreProperties(ignoreUnknown = true)
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Trottinette implements Serializable{
+	
+	@Id
+    @GeneratedValue
     private long id;
 
     private boolean disponible = true;
 
+    @OneToMany
     private List<Intervention> interventions;
 
     public Trottinette() {

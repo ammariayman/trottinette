@@ -5,13 +5,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-// @Entity
+@Entity
 public class Intervention implements Serializable {
-//    @Id
-//    @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
-//    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     private String description;

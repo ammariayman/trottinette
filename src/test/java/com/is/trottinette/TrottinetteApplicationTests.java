@@ -9,10 +9,6 @@ import com.is.trottinette.loader.TrottinetteLoader;
 
 @SpringBootTest
 class TrottinetteApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
 	
 	@Test
 	void loadTrottinettes() {

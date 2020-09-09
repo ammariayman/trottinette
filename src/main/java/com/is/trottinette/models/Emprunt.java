@@ -19,7 +19,10 @@ public class Emprunt implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    @ManyToOne
     private Abonne abonne;
+    
+    @ManyToOne
     private Trottinette trottinette;
 
     public Long getId() {
