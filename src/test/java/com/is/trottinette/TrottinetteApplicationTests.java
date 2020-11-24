@@ -10,15 +10,15 @@ import com.is.trottinette.loader.TrottinetteLoader;
 @SpringBootTest
 class TrottinetteApplicationTests {
 	
-	@Test
-	void loadTrottinettes() {
-		try {
-			TrottinetteLoader.load();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertNotEquals(0, TrottinetteLoader.getTrottinettes().size());
-	}
+//	@Test
+//	void loadTrottinettes() {
+//		try {
+//			TrottinetteLoader.load();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		assertNotEquals(0, TrottinetteLoader.getTrottinettes().size());
+//	}
 
 }

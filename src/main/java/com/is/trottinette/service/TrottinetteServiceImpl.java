@@ -1,6 +1,7 @@
 package com.is.trottinette.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -23,12 +24,8 @@ public class TrottinetteServiceImpl implements TrottinetteService {
 
 	@Override
 	public Trottinette findById(long id) {
-		try {
-			return trottinetteRepository.getOne(id);
-		}
-		catch(EntityNotFoundException e) {
-			return null;
-		}
+		Optional<Trottinette> optional = trottinetteRepository.findById(id);
+		return optional.isPresent() ? optional.get() : null;
 	}
 
 	@Override
@@ -37,7 +34,7 @@ public class TrottinetteServiceImpl implements TrottinetteService {
 	}
 
 	@Override
-	public void supprimerTrottinette(long id) {
+	public void deleteById(long id) {
 		trottinetteRepository.deleteById(id);
 	}
 

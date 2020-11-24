@@ -12,6 +12,6 @@ public interface TrottinetteService {
 	
 	public Trottinette ajouterTrottinette();
 	
-	public void supprimerTrottinette(long id);
+	public void deleteById(long id);
 
 }

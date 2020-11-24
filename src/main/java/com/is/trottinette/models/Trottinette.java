@@ -8,51 +8,56 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
-public class Trottinette implements Serializable{
-	
+public class Trottinette implements Serializable {
+
 	@Id
-    @GeneratedValue
-    private long id;
+	@GeneratedValue
+	private long id;
 
-    private boolean disponible = true;
+	private boolean disponible = true;
 
-    @OneToMany
-    private List<Intervention> interventions;
+	@OneToMany
+	private List<Intervention> interventions;
 
-    public Trottinette() {
-    }
+	public Trottinette() {
+	}
 
-    public Trottinette(long id) {
-        this.id = id;
-    }
+	public Trottinette(long id) {
+		this.id = id;
+	}
 
-    public Trottinette(long id, boolean disponible) {
-        this.id = id;
-        this.disponible = disponible;
-    }
+	public Trottinette(long id, boolean disponible) {
+		this.id = id;
+		this.disponible = disponible;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
-    }
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
 
-    public List<Intervention> getInterventions() {
-        return interventions;
-    }
+	@JsonProperty
+	public List<Intervention> getInterventions() {
+		return interventions;
+	}
 
-    public void setInterventions(List<Intervention> interventions) {
-        this.interventions = interventions;
-    }
+	public void setInterventions(List<Intervention> interventions) {
+		this.interventions = interventions;
+	}
 
-    public long getId() {
-        return id;
-    }
+	@JsonProperty
+	public long getId() {
+		return id;
+	}
 
-    public boolean isDisponible() {
-        return disponible;
-    }
+	@JsonProperty
+	public boolean isDisponible() {
+		return disponible;
+	}
 }
