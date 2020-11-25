@@ -2,6 +2,7 @@ package com.is.trottinette.models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class Trottinette implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
 	private boolean disponible = true;
 
@@ -29,12 +35,18 @@ public class Trottinette implements Serializable {
 		this.id = id;
 	}
 
-	public Trottinette(long id, boolean disponible) {
+	public Trottinette(Long id, boolean disponible) {
 		this.id = id;
 		this.disponible = disponible;
 	}
 
-	public void setId(long id) {
+	public Trottinette(boolean disponible, List<Intervention> interventions) {
+		super();
+		this.disponible = disponible;
+		this.interventions = interventions;
+	}
+
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -52,7 +64,7 @@ public class Trottinette implements Serializable {
 	}
 
 	@JsonProperty
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -60,4 +72,22 @@ public class Trottinette implements Serializable {
 	public boolean isDisponible() {
 		return disponible;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Trottinette other = (Trottinette) obj;
+		return Objects.equals(getId(), other.getId());
+	}
+
 }

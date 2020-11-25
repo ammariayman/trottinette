@@ -26,7 +26,7 @@ public class TrottinetteServiceTest {
 		assertNotEquals(0, trottinette.getId());
 		
 		Trottinette trottinette2 = trottinetteService.findById(trottinette.getId());
-		assertEquals(trottinette.getId(), trottinette2.getId());
+		assertEquals(trottinette, trottinette2);
 		
 		Trottinette trottinette3 = trottinetteService.ajouterTrottinette();
 		assertNotEquals(trottinette, trottinette3);

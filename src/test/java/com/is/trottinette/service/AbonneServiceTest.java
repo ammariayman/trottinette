@@ -1,5 +1,47 @@
 package com.is.trottinette.service;
 
-public class AbonneServiceTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.is.trottinette.models.Abonne;
+
+@SpringBootTest
+public class AbonneServiceTest {
+	
+	@Autowired
+	AbonneService abonneService;
+
+	@Test
+	public void abonneTest() {
+		GregorianCalendar gc = new GregorianCalendar(2020, 12, 25);
+		Abonne abonne = new Abonne(new Date(), gc.getTime(), "Ayman");
+		abonne = abonneService.abonnement(abonne);
+		assertNotEquals(0, abonne.getId());
+		
+		Abonne abonne2 = abonneService.findById(abonne.getId());
+		assertEquals(abonne, abonne2);
+		
+		Abonne abonne3 = new Abonne(new Date(), gc.getTime(), "Ayman");
+		abonne3 = abonneService.abonnement(abonne3);
+		assertNotEquals(abonne, abonne3);
+		
+				
+		List<Abonne> abonnes = abonneService.findAll();
+		assertNotEquals(0, abonnes.size());
+		
+		abonneService.desabonnement(abonne.getId());
+		Abonne abonne4 = abonneService.findById(abonne.getId());
+		assertNull(abonne4);
+	}
 }

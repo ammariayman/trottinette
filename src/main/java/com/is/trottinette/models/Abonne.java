@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Abonne implements Serializable{
@@ -29,7 +30,14 @@ public class Abonne implements Serializable{
         this.name = name;
     }
 
-    public Long getId() {
+    public Abonne(Date dateDebut, Date dateFin, String name) {
+		super();
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.name = name;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -60,4 +68,23 @@ public class Abonne implements Serializable{
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Abonne other = (Abonne) obj;
+		return Objects.equals(getId(), other.getId());
+	}
+    
+	
 }
