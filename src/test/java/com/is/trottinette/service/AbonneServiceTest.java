@@ -26,6 +26,7 @@ public class AbonneServiceTest {
 		Abonne abonne = new Abonne(new Date(), gc.getTime(), "Ayman");
 		abonne = abonneService.abonnement(abonne);
 		assertNotEquals(0, abonne.getId());
+		assertEquals("Ayman", abonne.getName());
 		
 		Abonne abonne2 = abonneService.findById(abonne.getId());
 		assertEquals(abonne, abonne2);
