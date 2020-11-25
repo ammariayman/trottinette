@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @NamedQueries({
@@ -73,13 +74,7 @@ public class Emprunt implements Serializable {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((abonne == null) ? 0 : abonne.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((trottinette == null) ? 0 : trottinette.hashCode());
-		return result;
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -91,27 +86,7 @@ public class Emprunt implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Emprunt other = (Emprunt) obj;
-		if (abonne == null) {
-			if (other.abonne != null)
-				return false;
-		} else if (!abonne.equals(other.abonne))
-			return false;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (trottinette == null) {
-			if (other.trottinette != null)
-				return false;
-		} else if (!trottinette.equals(other.trottinette))
-			return false;
-		return true;
+		return Objects.equals(getId(), other.getId());
 	}
 	
     

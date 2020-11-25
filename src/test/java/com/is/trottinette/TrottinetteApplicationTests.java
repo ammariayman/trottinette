@@ -10,7 +10,7 @@ import com.is.trottinette.loader.TrottinetteLoader;
 @SpringBootTest
 class TrottinetteApplicationTests {
 	
-//	@Test
+	@Test
 	void loadTrottinettes() {
 		try {
 			TrottinetteLoader.load();
