@@ -12,12 +12,20 @@ import java.util.Objects;
         @NamedQuery(name="allEmprunts", query = "select e from Emprunt e")
 })
 public class Emprunt implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue
     private Long id;
+    
+    @Temporal(TemporalType.DATE)
+    private Date dateDebut;
 
     @Temporal(TemporalType.DATE)
-    private Date date;
+    private Date dateFin;
 
     @ManyToOne
     private Abonne abonne;
@@ -33,12 +41,20 @@ public class Emprunt implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateDebut() {
+		return dateDebut;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
 	}
 
 	public Abonne getAbonne() {
@@ -65,9 +81,10 @@ public class Emprunt implements Serializable {
 		this.id = id;
 	}
 
-	public Emprunt(Date date, Abonne abonne, Trottinette trottinette) {
+	public Emprunt(Date dateDebut, Date dateFin, Abonne abonne, Trottinette trottinette) {
 		super();
-		this.date = date;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 		this.abonne = abonne;
 		this.trottinette = trottinette;
 	}

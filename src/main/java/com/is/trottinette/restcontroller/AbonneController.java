@@ -3,6 +3,8 @@ package com.is.trottinette.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,22 +29,30 @@ public class AbonneController {
 	}
 	
 	@GetMapping("/")
-	public List<Abonne> findAll() {
-		return abonneService.findAll();
+	public ResponseEntity<List<Abonne>> findAll() {
+		return new ResponseEntity<List<Abonne>>(abonneService.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public Abonne findById(@PathVariable Long id) {
-		return abonneService.findById(id);
+	public ResponseEntity<Abonne> findById(@PathVariable Long id) {
+		Abonne abonne = abonneService.findById(id);
+		if(abonne != null) {
+			return new ResponseEntity<Abonne>(abonne, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<Abonne>(abonne, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@PostMapping("/")
-	public Abonne addOne(@RequestBody Abonne abonne) {
-		return abonneService.abonnement(abonne);
+	public ResponseEntity<Abonne> addOne(@RequestBody Abonne abonne) {
+		abonne = abonneService.abonnement(abonne);
+		return new ResponseEntity<Abonne>(abonne, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteAbonne(@PathVariable Long id) {
+	public ResponseEntity<?> deleteAbonne(@PathVariable Long id) {
 		abonneService.desabonnement(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

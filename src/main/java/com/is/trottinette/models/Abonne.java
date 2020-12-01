@@ -8,15 +8,17 @@ import java.util.Objects;
 
 @Entity
 public class Abonne implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue
     private Long id;
 
     @Temporal(TemporalType.DATE)
-    private Date dateDebut;
-
-    @Temporal(TemporalType.DATE)
-    private Date dateFin;
+    private Date date;
 
     private String name;
     
@@ -24,17 +26,22 @@ public class Abonne implements Serializable{
     public Abonne() {
     }
 
-    public Abonne(Long id, String name, Date dateDebut, Date dateFin) {
-        this.id = id;
-        this.dateDebut = dateDebut;
-        this.name = name;
-    }
-
-    public Abonne(Date dateDebut, Date dateFin, String name) {
+	public Abonne(Long id, Date date, String name) {
 		super();
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
+		this.id = id;
+		this.date = date;
 		this.name = name;
+	}
+
+	public Abonne(Date date, String name) {
+		super();
+		this.date = date;
+		this.name = name;
+	}
+
+	public Abonne(Long id) {
+		super();
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -45,28 +52,20 @@ public class Abonne implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
+    public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
     }
 
 	@Override

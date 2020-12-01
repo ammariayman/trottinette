@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.is.trottinette.models.Abonne;
 import com.is.trottinette.models.Emprunt;
 import com.is.trottinette.persistence.EmpruntRepository;
 
