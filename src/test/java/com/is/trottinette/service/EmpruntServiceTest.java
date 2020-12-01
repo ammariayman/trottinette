@@ -30,17 +30,17 @@ public class EmpruntServiceTest {
 	@Test
 	public void empruntTest() {
 		GregorianCalendar gc = new GregorianCalendar(2020, 12, 25);
-		Abonne abonne = new Abonne(new Date(), gc.getTime(), "Ayman");
+		Abonne abonne = new Abonne(new Date(), "Ayman");
 		abonne = abonneService.abonnement(abonne);
 		Trottinette trottinette = trottinetteService.ajouterTrottinette();
-		Emprunt emprunt = new Emprunt(gc.getTime(), abonne, trottinette);
+		Emprunt emprunt = new Emprunt(new Date(), gc.getTime(), abonne, trottinette);
 		emprunt = empruntService.creerEmprunt(emprunt);
 		assertNotEquals(0, emprunt.getId());
 		
 		Emprunt emprunt2 = empruntService.findById(emprunt.getId());
 		assertEquals(emprunt, emprunt2);
 		
-		Emprunt emprunt3 = new Emprunt(gc.getTime(), abonne, trottinette);
+		Emprunt emprunt3 = new Emprunt(new Date(), gc.getTime(), abonne, trottinette);
 		emprunt3 = empruntService.creerEmprunt(emprunt3);
 		assertNotEquals(emprunt, emprunt3);
 		

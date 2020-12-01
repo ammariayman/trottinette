@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -22,8 +21,7 @@ public class AbonneServiceTest {
 
 	@Test
 	public void abonneTest() {
-		GregorianCalendar gc = new GregorianCalendar(2020, 12, 25);
-		Abonne abonne = new Abonne(new Date(), gc.getTime(), "Ayman");
+		Abonne abonne = new Abonne(new Date(), "Ayman");
 		abonne = abonneService.abonnement(abonne);
 		assertNotEquals(0, abonne.getId());
 		assertEquals("Ayman", abonne.getName());
@@ -31,7 +29,7 @@ public class AbonneServiceTest {
 		Abonne abonne2 = abonneService.findById(abonne.getId());
 		assertEquals(abonne, abonne2);
 		
-		Abonne abonne3 = new Abonne(new Date(), gc.getTime(), "Ayman");
+		Abonne abonne3 = new Abonne(new Date(), "Ayman");
 		abonne3 = abonneService.abonnement(abonne3);
 		assertNotEquals(abonne, abonne3);
 		
