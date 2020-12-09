@@ -2,6 +2,8 @@ package com.is.trottinette.restcontroller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import com.is.trottinette.service.AbonneService;
 @RestController
 @RequestMapping("/abonnes")
 public class AbonneController {
+	
+	public static final Logger logger = LoggerFactory.getLogger(AbonneController.class);
 	
 	@Autowired
 	AbonneService abonneService;

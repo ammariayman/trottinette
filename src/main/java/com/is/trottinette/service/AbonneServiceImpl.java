@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.is.trottinette.models.Abonne;
-import com.is.trottinette.models.Trottinette;
 import com.is.trottinette.persistence.AbonneRepository;
 
 @Service
@@ -15,7 +14,7 @@ public class AbonneServiceImpl implements AbonneService {
 	
 	@Autowired
 	AbonneRepository abonneRepository;
-
+	
 	@Override
 	public List<Abonne> findAll() {
 		return abonneRepository.findAll();
