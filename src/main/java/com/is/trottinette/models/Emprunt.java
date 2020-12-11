@@ -9,7 +9,8 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name="empruntById", query = "select e from Emprunt e where e.id = :id"),
-        @NamedQuery(name="allEmprunts", query = "select e from Emprunt e")
+        @NamedQuery(name="empruntsByAbonneId", query = "select e from Emprunt e where e.abonne.id = :id"),
+//        @NamedQuery(name="allEmprunts", query = "select e from Emprunt e")
 })
 public class Emprunt implements Serializable {
     /**

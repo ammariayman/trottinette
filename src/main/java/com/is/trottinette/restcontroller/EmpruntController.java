@@ -48,4 +48,9 @@ public class EmpruntController {
 		emprunt = empruntService.creerEmprunt(emprunt);
 		return new ResponseEntity<Emprunt>(emprunt, HttpStatus.CREATED);
 	}
+	
+	@GetMapping("/abonne/{id}")
+	public ResponseEntity<List<Emprunt>> findByAbonneId(@PathVariable Long id) {
+		return new ResponseEntity<List<Emprunt>>(empruntService.findByAbonneId(id), HttpStatus.OK);
+	}
 }

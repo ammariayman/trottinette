@@ -48,10 +48,10 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-//        .antMatchers("/abonnes/login/").permitAll().and().cors().and().csrf().disable()
-//        .antMatchers("/abonnes/*", "/emprunts/*").hasRole("user")
-//        .antMatchers("/*").hasRole("admin")
-        .anyRequest()
-        .permitAll().and().cors().and().csrf().disable();
+        .antMatchers("/auth/login/*", "/auth/refresh/*").permitAll()
+//        .antMatchers("/abonnes/{userId}**", "/emprunts/abonne/{userId}")
+//        .access("hasRole('user') and @userSecurity.hasUserId(authentication,#userId)")
+        .antMatchers("/**").hasRole("admin")
+        .and().cors().and().csrf().disable();
     }
 }

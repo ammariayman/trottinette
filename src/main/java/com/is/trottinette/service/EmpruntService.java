@@ -11,5 +11,7 @@ public interface EmpruntService {
 	public Emprunt findById(long id);
 	
 	public List<Emprunt> findAll();
+	
+	public List<Emprunt> findByAbonneId(long id);
 
 }
