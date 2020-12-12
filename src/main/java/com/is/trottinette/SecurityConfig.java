@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -50,8 +51,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         http.authorizeRequests()
         .antMatchers("/abonnes/{userId}", "/emprunts/abonne/{userId}")
         .access("hasRole('user') and @userSecurity.hasUserId(authentication,#userId)")
-//        .antMatchers("/emprunts/*")
-//        .access("hasRole('user') and @userSecurity.canCreateEmprunt(authentication,#userId)")
+        .antMatchers(HttpMethod.POST, "/emprunts/**").hasRole("user")
         .antMatchers("/**").hasRole("admin")
         .and().cors().and().csrf().disable();
     }

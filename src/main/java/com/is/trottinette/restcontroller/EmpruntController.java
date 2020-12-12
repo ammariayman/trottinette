@@ -45,7 +45,7 @@ public class EmpruntController {
 	}
 	
 	@PostMapping("/")
-	@PreAuthorize("hasRole('user') and #emprunt.abonne.name.equals(authentication.name)")
+	@PreAuthorize("#emprunt.abonne.name.equals(authentication.name)")
 	public ResponseEntity<Emprunt> addOne(@RequestBody Emprunt emprunt) {
 		emprunt = empruntService.creerEmprunt(emprunt);
 		return new ResponseEntity<Emprunt>(emprunt, HttpStatus.CREATED);
