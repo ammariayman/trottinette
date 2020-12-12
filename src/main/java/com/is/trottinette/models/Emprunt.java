@@ -28,7 +28,7 @@ public class Emprunt implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateFin;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Abonne abonne;
     
     @ManyToOne
