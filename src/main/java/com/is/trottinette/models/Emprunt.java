@@ -10,7 +10,6 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name="empruntById", query = "select e from Emprunt e where e.id = :id"),
         @NamedQuery(name="empruntsByAbonneId", query = "select e from Emprunt e where e.abonne.id = :id"),
-//        @NamedQuery(name="allEmprunts", query = "select e from Emprunt e")
 })
 public class Emprunt implements Serializable {
     /**
@@ -27,6 +26,8 @@ public class Emprunt implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date dateFin;
+    
+    private Boolean activated = false;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Abonne abonne;
@@ -58,6 +59,14 @@ public class Emprunt implements Serializable {
 		this.dateFin = dateFin;
 	}
 
+	public Boolean getActivated() {
+		return activated;
+	}
+
+	public void setActivated(Boolean activated) {
+		this.activated = activated;
+	}
+
 	public Abonne getAbonne() {
 		return abonne;
 	}
@@ -82,10 +91,9 @@ public class Emprunt implements Serializable {
 		this.id = id;
 	}
 
-	public Emprunt(Date dateDebut, Date dateFin, Abonne abonne, Trottinette trottinette) {
+	public Emprunt(Boolean activated, Abonne abonne, Trottinette trottinette) {
 		super();
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
+		this.activated = activated;
 		this.abonne = abonne;
 		this.trottinette = trottinette;
 	}
