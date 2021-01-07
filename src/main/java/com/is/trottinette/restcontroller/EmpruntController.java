@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.is.trottinette.models.Activation;
 import com.is.trottinette.models.Emprunt;
+import com.is.trottinette.service.ActivationService;
 import com.is.trottinette.service.EmpruntService;
 
 @RestController
@@ -22,6 +24,8 @@ public class EmpruntController {
 	
 	@Autowired
 	EmpruntService empruntService;
+	@Autowired
+	ActivationService activationService;
 
 	public EmpruntController(EmpruntService empruntService) {
 		super();
@@ -48,6 +52,8 @@ public class EmpruntController {
 	@PreAuthorize("#emprunt.abonne.name.equals(authentication.name)")
 	public ResponseEntity<Emprunt> addOne(@RequestBody Emprunt emprunt) {
 		emprunt = empruntService.creerEmprunt(emprunt);
+		Activation activation = activationService.save(new Activation(emprunt));
+		
 		return new ResponseEntity<Emprunt>(emprunt, HttpStatus.CREATED);
 	}
 	
